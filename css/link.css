@@ -1,0 +1,158 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+header {
+    width: 100%;
+    height: 50px;
+    border-bottom: 1px solid black;
+    position: relative;
+    position: fixed;
+    background-color: #fff;
+    z-index: 2;
+    top: 0;
+}
+
+header a {
+    font-family: 'Open Sans', sans-serif;
+    color: #000;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+#logo {
+    width: 26px;
+    height: 26px;
+    overflow: hidden;
+    background-image: url(../img/logo.png);
+    background-size: cover;
+    display: inline-block;
+    margin-top: 12px;
+    cursor: pointer;
+}
+
+#logo-box {
+    width: 180px;
+    height: 26px;
+    margin-left: 100px;
+    display: inline-block;
+    position: relative;
+}
+
+#logo-box a {
+    position: absolute;
+    text-decoration: none;
+    left: 45px;
+    top: 16px;
+}
+
+#logo-box a:hover {
+    text-decoration: underline;
+}
+
+#search-box {
+    width: 260px;
+    position: relative;
+    left: 500px;
+    top: -35px;
+}
+#search {
+    width: 250px;
+    height: 30px;
+    border: 1px solid black;
+    box-sizing: border-box;
+}
+
+#image {
+    width: 14px;
+    height: 14px;
+    position: relative;
+    top: -25px;
+    right: -230px;
+}
+#a1{
+    background-color: #fff;
+}
+.link {
+    text-decoration: none;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: black;
+    margin-left: 20px;
+}
+
+#link {
+    display: inline-block;
+    position: absolute;
+    right: 130px;
+    top: 12px;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
+#side{
+	width: 350px;
+	overflow: hidden;
+	float: left;
+}
+.tt{
+    font-family: 'Open Sans', sans-serif;
+	width: 178px;
+	height: 72px;
+	padding-top:80px;
+	margin-left: 80px;
+}
+.neirong{
+    font-family: 'Lato', sans-serif;
+	font-size: 20px;
+	margin-top: 15px ;
+    margin-left: 80px;
+    color: gray !important;
+}
+.nr{
+    text-decoration: none;
+    color: black;
+}
+.nr1{
+	 color: cadetblue;
+}
+.nr:hover{
+	text-decoration: underline;
+}
+#xian{
+	width: 230px;
+	border: 2px solid black;
+	margin: 60px 80px;
+}
+.article{
+	width: 990px;
+	overflow: hidden;
+	border-left: 2px solid black;
+	float: left;
+}
+.bigtt{
+    font-family: 'Open Sans', sans-serif;
+	width: 850px;
+	height: 40px;
+	margin-left: 55px;
+	margin-top: 80px;
+}
+.att{
+    font-family: 'Open Sans', sans-serif;
+	width: 850px;
+	height: 25px;
+	margin-left:55px;
+	margin-top: 24px;
+}
+.art{
+    font-family: 'Lato', sans-serif;
+	width: 850px;
+	margin-left: 55px;
+	margin-top: 24px;
+    line-height: 30px;
+}

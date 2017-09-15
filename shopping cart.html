@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="css/link.css" />
+	<link rel="stylesheet" type="text/css" href="css/footer.css" />
+	<link rel="stylesheet" type="text/css" href="css/shopping cart.css" />
+	<script src="js/myajax.js"></script>
+	<style>
+		#shopping-content {
+			width: 1200px;
+			height: auto;
+			margin: 0 auto;
+			margin-top: 30px;
+		}
+
+		th {
+			height: 40px;
+		}
+
+		.goods {
+			width: 492px;
+		}
+
+		.price,
+		.number,
+		.total,
+		.operate {
+			width: 168px;
+		}
+
+		td {
+			height: 111px;
+			padding-top: 30px;
+		}
+
+		.head {
+			display: inline-block;
+			border-bottom: 1px solid #ECECEC;
+		}
+	</style>
+</head>
+
+<body>
+	<header>
+		<div id="logo-box">
+			<div id="logo"></div>
+			<a href="">GOAT</a>
+		</div>
+		<div id="search-box">
+			<input type="text" name="search" id="search" placeholder="  Search" />
+			<img src="img/search.png" alt="" id="image">
+		</div>
+		<div id="link" style="right: 264px;">
+			<a href="javascript:" class="link" id="denglu">LOGIN</a>
+		</div>
+		<div id="link">
+			<a href="" class="link">GET THE APP</a>
+		</div>
+		<div id="img">
+
+		</div>
+	</header>
+	<h2 class="sc">Shopping Cart</h2>
+	<div id="xian1"></div>
+	<div id="shopping-content">
+		<table>
+			<tbody>
+				<tr class="head">
+					<th style="border-bottom: none;"></th>
+					<th class="goods">
+						<label style="position: absolute; left: 90px;">
+						<input type="checkbox" name="check" id="check" class="check" style="margin-right:5px;">
+						check All
+					</label> goods
+					</th>
+					<th class="price">price</th>
+					<th class="number">number</th>
+					<th class="total">total</th>
+					<th class="operate">operate</th>
+				</tr>
+			</tbody>
+		</table>
+		<!-- <div id="sum">
+          <div id="shopping-left"></div>
+
+
+		</div> -->
+	</div>
+	<script>
+		var oTable = document.querySelector('table');
+		var oSum = document.querySelector('#sum');
+		myajax.get('http://h6.duchengjiu.top/shop/api_cart.php', {
+			token: localStorage.token
+		}, function (err, responseText) {
+			var json = JSON.parse(responseText);
+			console.log(json);
+			var data = json.data;
+			var sum = 0;
+			for (var i = 0; i < data.length; i++) {
+				var obj = data[i];
+				sum += obj.goods_price * obj.goods_number;
+				oTable.innerHTML +=
+					`
+                          <tr>
+                            <td><label style="position: absolute; left: 20px;">
+						    <input type="checkbox" name="check" id="check" class="check" style="margin-right:5px;">
+					        </label></td>
+                            <td>${obj.goods_id}</td>
+                            <td><img src="${obj.goods_thumb}" ></td>
+                            <td>${obj.goods_name}</td>
+                            <td><input data-id="${obj.goods_id}" type="number" name="number" value="${obj.goods_number}" /></td>
+                            <td>${obj.goods_price}</td>
+                            <td name="sum">${obj.goods_price*obj.goods_number}</td>
+							<td><a href="">删除</a></td>
+                          </tr>
+                          `;
+			}
+			getSum();
+		});
+		oTable.onchange = function (event) {
+			event = event || window.event;
+			var target = event.target || event.srcElement;
+			if (target.name === 'number') {
+				console.log(target.value, target.dataset.id);
+				var goods_id = target.dataset.id;
+				var number = target.value;
+				myajax.post('http://h6.duchengjiu.top/shop/api_cart.php?token=' + localStorage.token, {
+						goods_id,
+						number
+					},
+					function (err, responseText) {
+						var json = JSON.parse(responseText);
+						console.log(json);
+						if (json.code === 0) {
+							// alert('更新购物车成功');
+							//修改总价和小计
+							var goods_price = parseInt(target.parentNode.nextElementSibling.innerText);
+							target.parentNode.nextElementSibling.nextElementSibling.innerText = parseInt(target
+								.value) * goods_price;
+							getSum();
+						}
+					})
+			}
+		}
+
+		function getSum() {
+			var oSums = document.querySelectorAll('td[name=sum]');
+			var sum = 0;
+			for (var i = 0; i < oSums.length; i++) {
+				sum += parseInt(oSums[i].innerText);
+			}
+			oSum.innerText = sum;
+		}
+	</script>
+	<!-- <div class="cart">
+		<img src="img/cart_empty.png" style="height: 171px; margin-left: 489px;" />
+		<div id="word">
+			<strong>The shopping cart is empty~</strong>
+		</div>
+	</div> -->
+	<div id="footer">
+		<div class="sfoot">
+			<a href="FAQs.html" class="a1">FAQ</a>
+		</div>
+		<div class="sfoot">
+			<a href="Authenticity Guarantee.html" class="a1">AUTHENTICITY GUARANTEE</a>
+		</div>
+		<div class="sfoot">
+			<a href="Returns.html" class="a1">RETURNS</a>
+		</div>
+		<div class="sfoot">
+			<a href="CAREERS.html" class="a1">CAREERS</a>
+		</div>
+		<div class="sfoot">
+			<a href="Support.html" class="a1">SUPPORT</a>
+		</div>
+		<div class="sfoot">
+			<a href="Terms.html" class="a1">TERMS</a>
+		</div>
+		<div class="sfoot">
+			<a href="Privacy Policy.html" class="a1">PRIVACY</a>
+		</div>
+
+	</div>
+</body>
+
+</html>

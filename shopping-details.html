@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Lato:100|Open+Sans:700" rel="stylesheet">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <title>Document</title>
+    <style>
+        a {
+            font-family: 'Lato', sans-serif;
+            font-size: 16px;
+            letter-spacing: .8px;
+            line-height: 2;
+            color: black;
+        }
+
+        #hot-goods {
+            margin-top: 50px;
+            margin: 0 auto;
+            width: 950px;
+            height: 1800px;
+        }
+
+        #img {
+            height: 21px;
+            width: 21px;
+            background-image: url(img/cart-gray.png);
+            background-repeat: no-repeat;
+            background-size: 21px 21px;
+            position: absolute;
+            right: 264px;
+            top: 12px;
+            display: none;
+        }
+
+        #img:hover {
+            cursor: pointer;
+            background-repeat: no-repeat;
+            background-size: 21px 21px;
+            background-image: url(img/cart-black.png);
+        }
+
+        #hot-goods li {
+            list-style: none;
+            float: left;
+            width: 308px;
+            height: 430px;
+            overflow: hidden;
+            margin: 5px 2px;
+            box-sizing: border-box;
+        }
+
+        #hot-goods li a {
+            text-align: center;
+            text-decoration: none;
+            font-family: 'Lato', sans-serif;
+            font-size: 16px;
+            letter-spacing: .8px;
+            line-height: 2;
+            color: black;
+        }
+
+        #hot-goods li:hover {
+            border: 1px solid black;
+        }
+
+        #hot-goods li img {
+            width: 100%;
+        }
+
+        #cat {
+            width: 800px;
+            height: 100px;
+            margin-top: 30px;
+            margin-left: 200px;
+            margin-right: 200px;
+            margin-bottom: 20px;
+        }
+
+        #cat li {
+            list-style: none;
+            float: left;
+            margin-bottom: 10px;
+            overflow: hidden;
+            margin-left: 30px;
+            box-sizing: border-box;
+        }
+
+        #cat li a {
+            text-decoration: none;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: black;
+        }
+
+        #cat li:hover {
+            border-bottom: 1px solid black;
+        }
+
+        li {
+            list-style: none;
+            float: left;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            /*width: 200px;*/
+            /*height: 350px;*/
+            overflow: hidden;
+        }
+
+        li img {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div id="logo-box">
+            <div id="logo"></div>
+            <a href="">GOAT</a>
+        </div>
+        <div id="search-box">
+            <input type="text" name="search" id="search" placeholder="  Search" />
+            <img src="img/search.png" alt="" id="image">
+        </div>
+        <script>
+            var oSearch = document.querySelector("#search");
+            oSearch.onkeyup = function (event) {
+                if (event.keyCode === 13) {
+                    var oGoods = document.querySelector('#hot-goods');
+                    myajax.get('http://h6.duchengjiu.top/shop/api_goods.php', {
+                            search_text: oSearch.value,
+                            page: 1,
+                            pagesize: 40
+                        },
+                        function (err, responseText) {
+                            var json = JSON.parse(responseText);
+                            oGoods.innerHTML = '';
+                            console.log(json);
+                            var data = json.data;
+                            for (var i = 0; i < data.length; i++) {
+                                var obj = data[i];
+                                oGoods.innerHTML +=
+                                    `<li><a href="details.html?goods_id=${obj.goods_id}">
+              <div><img src="${obj.goods_thumb}" /></div>
+              <div>${obj.goods_name}</div>
+              <div>${obj.price}</div></a>
+            </li>`;
+                            }
+                        });
+                }
+            }
+        </script>
+        <div id="link" style="right:264px"><a href="javascript:" class="link" id="denglu">LOGIN</a></div>
+        <div id="link">
+            <a href="https://bnc.lt/goat-sneaker-app" class="link">GET THE APP</a>
+        </div>
+        <div id="img"></div>
+    </header>
+    <script src="js/myajax.js" charset="utf-8"></script>
+    <ul id="cat"></ul>
+    <script>
+        var oCat = document.querySelector('#cat');
+        myajax.get('http://h6.duchengjiu.top/shop/api_cat.php', {}, function (error, responseText) {
+            var json = JSON.parse(responseText); //返回的整个json对象
+            var data = json.data; //json对象当中的data是一个数组
+            for (var i = 0; i < data.length; i++) {
+                var obj = data[i]; //数组里面的每一项是一个商品分类的对象
+                oCat.innerHTML +=
+                    `<li><a href="shopping-details.html?cat_id=${obj.cat_id}">${obj.cat_name}</a></li>`;
+            }
+        });
+    </script>
+
+    <ul id="hot-goods">
+    </ul>
+    <script>
+        //name abc
+        //123
+        var cat_id = getQueryString('cat_id');
+
+        var oGoods = document.querySelector('#hot-goods');
+        myajax.get('http://h6.duchengjiu.top/shop/api_goods.php', {
+                cat_id: cat_id
+            },
+            function (err, responseText) {
+                var json = JSON.parse(responseText);
+                console.log(json);
+                var data = json.data;
+                for (var i = 0; i < data.length; i++) {
+                    var obj = data[i];
+                    oGoods.innerHTML +=
+                        `<li>
+          <div><img src="${obj.goods_thumb}" /></div>
+          <div>${obj.goods_name}</div>
+          <div>${obj.price}</div>
+        </li>`;
+                }
+            });
+    </script>
+    <div id="footer">
+        <div class="sfoot">
+            <a href="FAQs.html">FAQ</a>
+        </div>
+        <div class="sfoot">
+            <a href="Authenticity Guarantee.html">AUTHENTICITY GUARANTEE</a>
+        </div>
+        <div class="sfoot">
+            <a href="Returns.html">RETURNS</a>
+        </div>
+        <div class="sfoot">
+            <a href="CAREERS.html">CAREERS</a>
+        </div>
+        <div class="sfoot">
+            <a href="Support.html">SUPPORT</a>
+        </div>
+        <div class="sfoot">
+            <a href="Terms.html">TERMS</a>
+        </div>
+        <div class="sfoot">
+            <a href="Privacy Policy.html">PRIVACY</a>
+        </div>
+
+    </div>
+</body>
+
+</html>

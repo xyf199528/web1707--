@@ -1,0 +1,194 @@
+#top {
+	width: 100%;
+	height: 700px;
+	border-bottom: 1px solid black;
+}
+
+#tleft {
+	width: 480px;
+	height: 612px;
+	padding-top: 88px;
+	margin-left: 154px;
+	float: left;
+}
+
+#tlogo {
+	width: 120px;
+	height: 30px;
+	margin-left: 330px;
+}
+
+.tlogo {
+	width: 30px;
+	height: 30px;
+	float: left;
+	margin-left: 15px;
+}
+
+.tlogo1 {
+	margin-left: 0;
+}
+
+#photo {
+	width: 480px;
+	height: 300px;
+	background-size: cover;
+}
+
+#tright {
+	width: 480px;
+	height: 612px;
+	padding-top: 88px;
+	margin-right: 235px;
+	float: right;
+}
+
+#tright1 {
+	width: 420px;
+	height: 613px;
+	margin-left: 60px;
+}
+
+#gn {
+	width: 420px;
+	text-align: center;
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+#gn a {
+	text-decoration: none;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 10px;
+	font-weight: 700;
+	letter-spacing: 2px;
+	color: black;
+}
+
+.gn {
+	width: 420px;
+	text-align: center;
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+.gn a {
+	margin-top: 30px;
+	margin-bottom: 30px;
+	text-decoration: none;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 10px;
+	font-weight: 700;
+	letter-spacing: 2px;
+	color: black;
+}
+
+#to {
+	width: 330px;
+	height: 65px;
+	margin-left: 45px;
+	margin-top: 30px;
+	position: relative;
+	border-bottom: 1px solid gainsboro;
+	border-top: 1px solid gainsboro;
+}
+
+#add {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 10px;
+	font-weight: 700;
+	letter-spacing: 2px;
+	width: 200px;
+	height: 50px;
+	background-color: black;
+	color: white;
+	border: 1px black solid;
+	border-radius: 10px;
+	position: absolute;
+	top: 8px;
+	left: 65px;
+}
+
+#add:hover {
+	background-color: white;
+	color: black;
+	cursor: pointer;
+}
+
+#warning {
+	width: 340px;
+	height: 222px;
+	margin-left: 45px;
+	margin-top: 10px;
+}
+
+.warn {
+	text-align: center;
+	width: 120px;
+	height: 222px;
+	float: left;
+}
+
+.warn1 {
+	width: 220px;
+}
+
+.wlogo {
+	width: 40px;
+	height: 40px;
+	margin-left: 35px;
+	margin-top: 5px;
+}
+
+.wl1 {
+	margin-left: 80px;
+}
+
+.wtitle {
+	font-family: 'Lato', sans-serif;
+	font-size: 10px;
+	font-weight: 700;
+	letter-spacing: 2px;
+	margin-left: -30px;
+	width: 111px;
+}
+.wart{
+	font-family: 'Lato', sans-serif;
+	font-size: 10px;
+	font-weight: 700;
+	letter-spacing: 2px;
+	margin-left: -20px;
+	margin-right: 5px;
+	width: 90px;
+}
+#wart{
+	width: 165px;
+	margin-left: -50px;
+}
+#bottom {
+	width: 100%;
+	height: 400px;
+}
+
+#btitle {
+	margin-left: 539px;
+	margin-top: 20px;
+}
+#btitle h2{
+	font-family: 'Open Sans', sans-serif;
+	font-size: 10px;
+	font-weight: 700;
+	letter-spacing: 2px;
+}
+.pho {
+	width: 100%;
+	height: 300px;
+	margin-top: 20px;
+}
+
+.photo {
+	width: 480px;
+	height: 300px;
+	margin-left: 107px;
+	float: left;
+}

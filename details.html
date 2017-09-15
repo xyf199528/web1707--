@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300|Open+Sans:700">
+	<link rel="stylesheet" href="css/index.css">
+	<link rel="stylesheet" type="text/css" href="css/detail.css" />
+	<link rel="stylesheet" href="css/footer.css">
+	<script src="js/myajax.js"></script>
+	<style>
+		#hot-goods {
+			margin: 0 auto;
+			width: 950px;
+			height: auto;
+			position: absolute;
+			left: 200px;
+			top: 80px;
+		}
+
+		#hot-goods li {
+			list-style: none;
+			float: left;
+			width: 308px;
+			height: 430px;
+			overflow: hidden;
+			margin: 5px 2px;
+			box-sizing: border-box;
+			cursor: pointer;
+		}
+
+		#hot-goods li a {
+			text-align: center;
+			text-decoration: none;
+			font-family: 'Lato', sans-serif;
+			font-size: 16px;
+			letter-spacing: .8px;
+			line-height: 2;
+			color: black;
+		}
+
+		#hot-goods li:hover {
+			border: 1px solid black;
+		}
+
+		#hot-goods li img {
+			width: 100%;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="body">
+		<header>
+			<div id="logo-box">
+				<div id="logo"></div>
+				<a href="">GOAT</a>
+			</div>
+			<div id="search-box">
+				<input type="text" name="search" id="search" placeholder="  Search" />
+				<img src="img/search.png" alt="" id="image">
+			</div>
+			<div id="link">
+				<a href="javascript:" class="link" id="denglu">LOGIN</a>
+				<a href="https://bnc.lt/goat-sneaker-app" class="link">GET THE APP</a>
+			</div>
+		</header>
+		<ul id="hot-goods"></ul>
+
+	</div>
+	<div id="top">
+		<div id="tleft">
+			<div id="tlogo">
+				<div class="tlogo tlogo1" title="Facebook">
+					<img src="img/share_facebook.png" style="width: 30px;" />
+				</div>
+				<div class="tlogo" title="Twitter">
+					<img src="img/share_twitter.png" style="width: 30px;" />
+				</div>
+				<div class="tlogo" title="Pinterest">
+					<img src="img/share_pinterest.png" style="width: 30px;" />
+				</div>
+			</div>
+			<div id="photo">
+
+			</div>
+			<script>
+				var goods_id  = getQueryString("goods_id");
+				var oPhoto=document.querySelector("#photo");
+				myajax.get('http://h6.duchengjiu.top/shop/api_goods.php', {
+					goods_id: goods_id
+					// goods_id //ES6
+				}, function (err, responseText) {
+					var json = JSON.parse(responseText);
+					var obj = json.data[0];
+					console.log(json);
+					oPhoto.innerHTML =
+						`
+				   <div><img src="${obj.goods_thumb}"></div>
+				 `;
+				});
+			</script>
+		</div>
+		<div id="tright">
+			<div id="tright1">
+				<h1 id="gn"></h1>
+				<script>
+						var goods_id  = getQueryString("goods_id");
+						var oGn=document.querySelector("#gn");
+						myajax.get('http://h6.duchengjiu.top/shop/api_goods.php', {
+							goods_id: goods_id
+							// goods_id //ES6
+						}, function (err, responseText) {
+							var json = JSON.parse(responseText);
+							var obj = json.data[0];
+							console.log(json);
+							oGn.innerHTML =
+								`
+						   <a href="">${obj.goods_name}</a>
+						 `;
+						});
+						</script>
+				<h2 class="gn" id="good-price"></h2>
+				<script>
+						var goods_id  = getQueryString("goods_id");
+						var oPrice=document.querySelector("#good-price");
+						myajax.get('http://h6.duchengjiu.top/shop/api_goods.php', {
+							goods_id: goods_id
+							// goods_id //ES6
+						}, function (err, responseText) {
+							var json = JSON.parse(responseText);
+							var obj = json.data[0];
+							console.log(json);
+							oPrice.innerHTML =
+								`
+						   <a href="">¥${obj.price}</a>
+						 `;
+						});
+						</script>
+				<div id="to">
+					<input type="button" name="add" id="add" value="Add To Shopping Cart!" />
+				</div>
+
+				<div id="warning">
+					<div class="warn">
+						<div class="wlogo">
+							<img src="img/icon_verification@2x.png" style="width: 40px;height: 40px;" />
+							<p class="wtitle">100% Authentic</p>
+							<p class="wart">We offer our Authenticity Guarantee on all purchases and verify every sneaker sold.</p>
+						</div>
+					</div>
+					<div class="warn warn1">
+						<div class="wlogo wl1">
+							<img src="img/icon_return@2x.png" style="width: 40px;height: 40px;" />
+							<p class="wtitle">Returns</p>
+							<p class="wart" id="wart">We accept returns on any New In Box/No Box sneakers that are in the same condition as when shipped. We’ll refund you for the amount you paid, less the shipping costs to and from you in the form of GOAT credit.</p>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<div id="footer">
+		<div class="sfoot">
+			<a href="FAQs.html" class="a1">FAQ</a>
+		</div>
+		<div class="sfoot">
+			<a href="Authenticity Guarantee.html">AUTHENTICITY GUARANTEE</a>
+		</div>
+		<div class="sfoot">
+			<a href="Returns.html">RETURNS</a>
+		</div>
+		<div class="sfoot">
+			<a href="CAREERS.html">CAREERS</a>
+		</div>
+		<div class="sfoot">
+			<a href="Support.html">SUPPORT</a>
+		</div>
+		<div class="sfoot">
+			<a href="Terms.html">TERMS</a>
+		</div>
+		<div class="sfoot">
+			<a href="Privacy Policy.html">PRIVACY</a>
+		</div>
+
+	</div>
+	<script src="js/myajax.js"></script>
+	<script>
+	document.body.onclick = function (event) {
+            event = event || window.event;
+            var target = event.target || event.srcElement;
+            if (target.id === 'add') {
+                if(!localStorage.token){
+                    alert("请先登录再购买");
+                    location.href="用户登录.html";
+                    return;
+                }
+                myajax.post('http://h6.duchengjiu.top/shop/api_cart.php?token=' + localStorage.token, {
+                    
+                        goods_id:goods_id,
+                        number: 1
+                    },
+                    function (err, responseText) {
+                        var json = JSON.parse(responseText);
+                        console.log(json);
+                        if (json.code === 0) {
+                            alert('添加到购物车成功');
+                        }
+                    })
+            }
+        }
+
+	</script>
+</body>
+
+</html>

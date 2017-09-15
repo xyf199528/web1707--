@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link href="https://fonts.googleapis.com/css?family=Lato:100|Open+Sans:700" rel="stylesheet">
+	<title>GOAT: Buy and Sell Sneakers Safely</title>
+	<link rel="stylesheet" href="css/index.css">
+	<link rel="stylesheet" href="css/login.css">
+	<link rel="stylesheet" href="css/footer.css">
+	<link rel="stylesheet" href="css/changePicture.css">
+	<script src="js/myajax.js"></script>
+	<style>
+		#hot-goods {
+			margin-top: 50px;
+			margin: 0 auto;
+			width: 950px;
+			height: 1800px;
+		}
+
+		#img {
+			height: 21px;
+			width: 21px;
+			background-image: url(img/cart-gray.png);
+			background-repeat: no-repeat;
+			background-size: 21px 21px;
+			position: absolute;
+			right: 264px;
+			top: 12px;
+			display: none;
+		}
+
+		#img:hover {
+			cursor: pointer;
+			background-repeat: no-repeat;
+			background-size: 21px 21px;
+			background-image: url(img/cart-black.png);
+		}
+
+		#hot-goods li {
+			list-style: none;
+			float: left;
+			width: 308px;
+			height: 430px;
+			overflow: hidden;
+			margin: 5px 2px;
+			box-sizing: border-box;
+		}
+
+		#hot-goods li a {
+			text-align: center;
+			text-decoration: none;
+			font-family: 'Lato', sans-serif;
+			font-size: 16px;
+			letter-spacing: .8px;
+			line-height: 2;
+			color: black;
+		}
+
+		#hot-goods li:hover {
+			border: 1px solid black;
+		}
+
+		#hot-goods li img {
+			width: 100%;
+		}
+
+		#cat {
+			width: 700px;
+			height: 100px;
+			margin-top: 30px;
+			margin-left: 200px;
+			margin-right: 200px;
+			margin-bottom: 20px;
+		}
+
+		#cat li {
+			list-style: none;
+			float: left;
+			margin-bottom: 10px;
+			overflow: hidden;
+			margin-left: 30px;
+			box-sizing: border-box;
+		}
+
+		#cat li a {
+			text-decoration: none;
+			font-family: 'Open Sans', sans-serif;
+			font-size: 18px;
+			font-weight: 700;
+			letter-spacing: 2px;
+			color: black;
+		}
+
+		#cat li:hover {
+			border-bottom: 1px solid black;
+		}
+	</style>
+</head>
+
+<body>
+
+	<div id="body">
+		<header>
+			<div id="logo-box">
+				<div id="logo"></div>
+				<a href="">GOAT</a>
+			</div>
+			<div id="search-box">
+				<input type="text" name="search" id="search" placeholder="  Search" />
+				<img src="img/search.png" alt="" id="image">
+			</div>
+			<script>
+				var oSearch = document.querySelector("#search");
+				oSearch.onkeyup = function (event) {
+					if (event.keyCode === 13) {
+						var oGoods = document.querySelector('#hot-goods');
+						myajax.get('http://h6.duchengjiu.top/shop/api_goods.php', {
+								search_text: oSearch.value,
+								page: 1,
+								pagesize: 40
+							},
+							function (err, responseText) {
+								var json = JSON.parse(responseText);
+								oGoods.innerHTML = '';
+								console.log(json);
+								var data = json.data;
+								for (var i = 0; i < data.length; i++) {
+									var obj = data[i];
+									oGoods.innerHTML +=
+										`<li><a href="details.html?goods_id=${obj.goods_id}">
+          <div><img src="${obj.goods_thumb}" /></div>
+          <div>${obj.goods_name}</div>
+          <div>${obj.price}</div></a>
+        </li>`;
+								}
+							});
+					}
+				}
+			</script>
+			<div id="link" style="right:264px"><a href="javascript:" class="link" id="denglu">LOGIN</a></div>
+			<div id="link">
+				<a href="https://bnc.lt/goat-sneaker-app" class="link">GET THE APP</a>
+			</div>
+			<div id="img"></div>
+		</header>
+		<div id="a1">
+			<div id="login">
+				<div id="Email">
+					<span id="close1">x</span>
+					<div id="line"></div>
+					<div id="title">
+						<strong>FORGET PASSWORD</strong>
+						<form action="" method="post">
+							<p class="stitle1"><strong>	Email or Username</strong></p>
+							<p><input type="text" name="" id="" value="" class="in1" /></p>
+							<input type="submit" value="RESET PASSWORD" id="btn" />
+						</form>
+					</div>
+				</div>
+				<span id="close">x</span>
+				<div id="line"></div>
+				<div id="title">
+					WELCOME BACK
+				</div>
+				<form action="" method="post">
+					<p class="stitle"><strong>Email or Username</strong></p>
+					<p><input type="text" name="username" id="inner" value="" class="in" /></p>
+					<p class="stitle"><strong>password</strong></p>
+					<p><input type="password" name="password" id="pass" value="" class="in" /></p>
+					<p id="error">Incorrect email or password, please try again!</p>
+					<p><input type="button" value="LOGIN" id="btn" name="btn" /></p>
+					<p id="forget">Forget your password?</p>
+				</form>
+			</div>
+		</div>
+		<div class="middle">
+			<div class="left">
+				<span><strong>The safest way to buy and sell sneakers on mobile.</strong></span><br />
+				<span class="span-down"><strong>Now available for iPhone and Android.</strong></span>
+				<div class="download-app">
+					GET THE APP
+				</div>
+			</div>
+			<div id="right">
+				<img src="img/out.png" alt="">
+				<div class="carousel" id="carousel">
+					<div class="imageslist" id="imageslist">
+						<ul id="circles">
+							<li class="first"><a><img src="img/01.png" alt="" /></a></li>
+							<li><a><img src="img/02.png" alt="" /></a></li>
+							<li><a><img src="img/03.png" alt="" /></a></li>
+						</ul>
+					</div>
+				</div>
+				<img src="img/home-phone-shadow.png" alt="" id="shadow">
+			</div>
+		</div>
+
+		<div class="discription">
+			<h2>All sellers are vetted, their photos are verified and every sneaker is authenticated by our team of specialists.</h2>
+			<ul class="list">
+				<li class="steps"><img src="img/steps-image1.png" alt="" width="190" height="190"></li>
+				<li class="steps"><img src="img/steps-image2.png" alt="" width="190" height="190"></li>
+				<li class="steps"><img src="img/steps-image3.png" alt="" width="190" height="190"></li>
+				<li class="steps"><img src="img/steps-image4.png" alt="" width="190" height="190"></li>
+			</ul>
+		</div>
+		<div class="sells">
+			<ul id="cat"></ul>
+			<script>
+				var oCat = document.querySelector('#cat');
+				myajax.get('http://h6.duchengjiu.top/shop/api_cat.php', {}, function (error, responseText) {
+					var json = JSON.parse(responseText); //返回的整个json对象
+					var data = json.data; //json对象当中的data是一个数组
+					for (var i = 0; i < data.length; i++) {
+						var obj = data[i]; //数组里面的每一项是一个商品分类的对象
+						oCat.innerHTML += `<li><a href="shopping-details.html?cat_id=${obj.cat_id}">${obj.cat_name}</a></li>`;
+					}
+				});
+			</script>
+			<ul id="hot-goods">
+			</ul>
+			<script>
+				var oGoods = document.querySelector('#hot-goods');
+				myajax.get('http://h6.duchengjiu.top/shop/api_goods.php', {
+					pagesize:12
+				}, function (err, responseText) {
+					var json = JSON.parse(responseText);
+					console.log(json);
+					var data = json.data;
+					for (var i = 0; i < data.length; i++) {
+						var obj = data[i];
+						oGoods.innerHTML +=
+							`<li><a href="details.html?goods_id=${obj.goods_id}">
+          <div><img src="${obj.goods_thumb}" /></div>
+          <div><strong>${obj.goods_name}</strong></div>
+		  <div><strong>${obj.price}</strong></div>
+		  </a>
+		</li>`;
+					}
+				});
+			</script>
+		</div>
+		<div class="download-app" id="view">VIEW MORE</div>
+		<div id="footer">
+			<div class="sfoot">
+				<a href="FAQs.html">FAQ</a>
+			</div>
+			<div class="sfoot">
+				<a href="Authenticity Guarantee.html">AUTHENTICITY GUARANTEE</a>
+			</div>
+			<div class="sfoot">
+				<a href="Returns.html">RETURNS</a>
+			</div>
+			<div class="sfoot">
+				<a href="CAREERS.html">CAREERS</a>
+			</div>
+			<div class="sfoot">
+				<a href="Support.html">SUPPORT</a>
+			</div>
+			<div class="sfoot">
+				<a href="Terms.html">TERMS</a>
+			</div>
+			<div class="sfoot">
+				<a href="Privacy Policy.html">PRIVACY</a>
+			</div>
+
+		</div>
+		<script src="js/animate.js"></script>
+		<script src="js/login.js"></script>
+		<script src="js/changePicture.js"></script>
+		<script>
+			var search_text = getQueryString('search_text');
+			//name abc
+			//123
+			var oGoods = document.querySelector('#hot-goods');
+			myajax.get('http://h6.duchengjiu.top/shop/api_goods.php', {
+					search_text: search_text
+				},
+				function (err, responseText) {
+					var json = JSON.parse(responseText);
+					console.log(json);
+					var data = json.data;
+					for (var i = 0; i < data.length; i++) {
+						var obj = data[i];
+						oGoods.innerHTML +=
+							`<li>
+          <div><img src="${obj.goods_thumb}" /></div>
+          <div>${obj.goods_name}</div>
+          <div>${obj.price}</div>
+        </li>`;
+					}
+				});
+		</script>
+</body>
+
+</html>
