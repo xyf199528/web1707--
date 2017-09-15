@@ -40,6 +40,13 @@
 			display: inline-block;
 			border-bottom: 1px solid #ECECEC;
 		}
+		img{
+			width: 200px;
+			height: 200px;
+		}
+		.first{
+			width: 10px;
+		}
 	</style>
 </head>
 
@@ -105,7 +112,7 @@
 				oTable.innerHTML +=
 					`
                           <tr>
-                            <td><label style="position: absolute; left: 20px;">
+                            <td><label style="position: absolute; left: 20px;" class="first">
 						    <input type="checkbox" name="check" id="check" class="check" style="margin-right:5px;">
 					        </label></td>
                             <td>${obj.goods_id}</td>

@@ -3,7 +3,6 @@
 	padding: 0;
 }
 #login{
- 
 	width: 600px;
 	height: 500px;
 	margin: 60px 362px;
@@ -14,10 +13,9 @@
 	position: fixed;
 	top: 10px;
 	z-index: 2;
-	/* display: none; */
 	background-color: #fff;
-	opacity: 0;
-	transform: translateY(-500);
+	display: none;
+	transform: translateY(0px);
 	transition: all 0.2s;
 }
 .a1{
@@ -25,7 +23,7 @@
 	height: 1000px;
 	background: rgba(0,0,0,0.7);
 	z-index: 3;
-	position: fixed;
+	position: relative;
 }
 #line{
 	width: 600px;
@@ -53,6 +51,9 @@
 #close1:hover{
 	color: black;
 	cursor: pointer;
+}
+#denglu.link{
+	margin-top:4px; 
 }
 #title{
 	text-align: center;

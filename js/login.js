@@ -6,10 +6,11 @@ var email = document.getElementById('Email');
 var denglu = document.querySelector("#denglu");
 var a = document.querySelector("#a1");
 var Error = document.querySelector("#error");
+var oImg = document.querySelector("#img")
 big.onclick = function () {
-	login.style.opacity = '0';
-	login.style.transform = "translateY(-500px)";
+	login.style.transform = "translateY(-600px)";
 	a.className = '';
+	preventDefault();
 }
 forget.onclick = function () {
 	email.style.opacity = '1';
@@ -21,8 +22,7 @@ small.onclick = function () {
 }
 denglu.onclick = function () {
 	a.className = 'a1';
-	login.style.opacity = '1';
-	login.style.transform = "translateY(0px)"
+	login.style.display = 'block';
 }
 var oUsername = document.querySelector('input[name=username]');
 var oPassword = document.querySelector('input[name=password]');
@@ -41,7 +41,12 @@ oBtn.onclick = function () {
 		localStorage.username = json.data.username;
 		console.log(localStorage.token);
 		console.log(localStorage.username);
-
+		if (localStorage.token) {
+			alert("登录成功");
+			a.style.display = "none";
+			denglu.style.display = "none";
+			oImg.style.display = "block";
+		}
 	});
 }
 inner.onblur = function () {
@@ -61,4 +66,11 @@ pass.onblur = function () {
 		pass.style.backgroundColor = 'white';
 		Error.style.display = 'none';
 	}
+}
+oImg.onclick = function () {
+	location.href = "shopping cart.html";
+}
+if (!localStorage.token) {
+	denglu.style.display = "block";
+	oImg.style.display = "none";
 }
